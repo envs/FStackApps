@@ -10,8 +10,12 @@ server.set('view engine', 'ejs');
 
 server.get('/', (req, res) => {
     //res.send('Hello Express');
+    // res.render('index', {
+    //     content: 'Error in REACT - Fallback to <em>NORMAL :) !</em><br>'
+    //     // content: 'Hello Express and <em>EJS!</em><br>'
+    // });
     res.render('index', {
-        content: 'Hello Express and <em>EJS!</em><br>'
+        content: ''
     });
 });
 
