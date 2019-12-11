@@ -15,6 +15,14 @@ class App extends React.Component {
     //     test : 24
     // }
 
+    // Lifecycle methods - These are used to configure some custom behaviors
+    componentDidMount() {
+        // Usually for implementing timers, listeners, etc.
+    }
+    componentWillUnmount() {
+        // Usually for cleaning timers, listeners, etc.
+    }
+
     render() {
         return (
             <div className='App'>
