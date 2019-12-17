@@ -1,6 +1,8 @@
 import React from 'react';
 import Header from './Header';
 import ContestPreview from './ContestPreview';
+import axios from 'axios';
+//import data from '../testData';
 
 class App extends React.Component {
 
@@ -8,7 +10,8 @@ class App extends React.Component {
         super(props);
         this.state = { 
             pageHeader: "Naming Contests",
-            bodySubContent: "Just a bit of content filling for the page"
+            bodySubContent: "Just a bit of content filling for the page",
+            contests : []
         };
     }
     // You can just do the above as:
@@ -16,18 +19,27 @@ class App extends React.Component {
     //     test : 24
     // }
 
-    // // Lifecycle methods - These are used to configure some custom behaviors
-    // componentDidMount() {
-    //     // Usually for implementing timers, listeners, etc.
-    //     // Can also contains integration codes, ajax logic, 
-    //     console.log("Did Mount");
-    //     debugger;
-    // }
-    // componentWillUnmount() {
-    //     // Usually for cleaning timers, listeners, etc.
-    //     console.log("Will unmount");
-    //     debugger;
-    // }
+    // Lifecycle methods - These are used to configure some custom behaviors
+    componentDidMount() {
+        // Usually for implementing timers, listeners, etc.
+        // Can also contains integration codes, ajax logic, 
+        // console.log("Did Mount");
+        // debugger;
+
+        // Let's use ajax request to fetch the data from the remote api
+        axios.get('/api/contests')
+            .then(resp => {
+                this.setState({
+                    contests: resp.data.contests
+                });
+            })
+            .catch(console.error);
+    }
+    componentWillUnmount() {
+        // Usually for cleaning timers, listeners, etc.
+        // console.log("Will unmount");
+        // debugger;
+    }
 
     render() {
         return (
@@ -37,8 +49,9 @@ class App extends React.Component {
                     {this.state.bodySubContent}
                 </div>
                 <div>
-                    {this.props.contests.map(contest => 
-                        <ContestPreview {...contest}/>
+                    {/* Every time you have a map() call, you need to provide a unique key to identify the child element */}
+                    {this.state.contests.map(contest => 
+                        <ContestPreview key={contest.id} {...contest}/>
                     )}
                 </div>
             </div>  
