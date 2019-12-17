@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './Header';
+import ContestPreview from './ContestPreview';
 
 class App extends React.Component {
 
@@ -15,17 +16,18 @@ class App extends React.Component {
     //     test : 24
     // }
 
-    // Lifecycle methods - These are used to configure some custom behaviors
-    componentDidMount() {
-        // Usually for implementing timers, listeners, etc.
-        console.log("Did Mount");
-        debugger;
-    }
-    componentWillUnmount() {
-        // Usually for cleaning timers, listeners, etc.
-        console.log("Will unmount");
-        debugger;
-    }
+    // // Lifecycle methods - These are used to configure some custom behaviors
+    // componentDidMount() {
+    //     // Usually for implementing timers, listeners, etc.
+    //     // Can also contains integration codes, ajax logic, 
+    //     console.log("Did Mount");
+    //     debugger;
+    // }
+    // componentWillUnmount() {
+    //     // Usually for cleaning timers, listeners, etc.
+    //     console.log("Will unmount");
+    //     debugger;
+    // }
 
     render() {
         return (
@@ -33,6 +35,11 @@ class App extends React.Component {
                 <Header message= {this.state.pageHeader} />
                 <div>
                     {this.state.bodySubContent}
+                </div>
+                <div>
+                    {this.props.contests.map(contest => 
+                        <ContestPreview {...contest}/>
+                    )}
                 </div>
             </div>  
         );

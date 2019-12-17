@@ -7,14 +7,17 @@ module.exports = {
     module: {
       rules: [
         {
-          test: /\.js$/,
+          test: /\.(js|jsx)$/,
           exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
-          },
-        },
-      ],
-    },
+            options: {
+              presets: ['@babel/preset-env']
+            }
+          }
+        }
+      ]
+    }
   };
 
 
@@ -30,9 +33,13 @@ module.exports = {
 //     module: {
 //         loaders: [
 //             {
-//                 test: /\.js$/,
-//                 loader: 'babel-loader'
-//             }
+//                 test: /\.json$/,
+//                 loader: 'json-loader'
+//             },
+//             {
+//               test: /\.js$/,
+//               loader: 'babel-loader'
+//           }
 //         ]
 //     }
 // };
