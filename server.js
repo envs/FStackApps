@@ -16,16 +16,21 @@ server.use(sassMiddleware({
 // EJS
 server.set('view engine', 'ejs');
 
-import './serverRender';
+import serverRender from './serverRender';
+
 server.get('/', (req, res) => {
     //res.send('Hello Express');
     // res.render('index', {
     //     content: 'Error in REACT - Fallback to <em>NORMAL :) !</em><br>'
     //     // content: 'Hello Express and <em>EJS!</em><br>'
     // });
-    res.render('index', {
-        content: ''
-    });
+    serverRender()
+        .then(content => {
+            res.render('index', {
+                content
+            });
+        })
+        .catch(console.error);
 });
 
 // Using Express Static Middleware to serve static contents. .use() is how we put the middleware to use :)
